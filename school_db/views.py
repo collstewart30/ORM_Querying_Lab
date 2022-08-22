@@ -67,9 +67,6 @@ def problem_one(request):
             f'Full Name: {student.first_name} {student.last_name} GPA: {student.gpa}')
 
     
-
-    print('Colleen Stewart')
-
     return complete(request)
 
 
@@ -114,7 +111,8 @@ def problem_two(request):
 
     for instructor in prob_two_instructors:
         print(
-            f'Full Name: {instructor.first_name} {instructor.last_name} Hire Date: {instructor.hire_date}')
+            f'Full Name: {instructor.first_name} {instructor.last_name} \nHire Date: {instructor.hire_date}')
+        print()
 
 
     return complete(request)
@@ -158,10 +156,13 @@ SELECT `school_db_instructor`.`id`,
 # (Do not hard code his name in the print)
 def problem_three(request):
 
-
-    prob_three_courses = Course.objects.filter(instructor_id = 2)
     prob_three_instructor = Instructor.objects.get(pk=2)
-    print(f'Name: {prob_three_instructor} Courses: {prob_three_courses}')
+    prob_three_courses = Course.objects.filter(instructor = 2)
+
+    print(f'Name: {prob_three_instructor.first_name} {prob_three_instructor.last_name}')
+    print(f'Course:')
+    for course in prob_three_courses:
+      print(f'  - {course.name}')
 
 
     return complete(request)
@@ -312,7 +313,7 @@ def problem_six(request):
     prob_six_student = Student.objects.get(pk=student_id)
     print(prob_six_student)
 
-    student_id = 11
+
 
 
     return complete(request)
@@ -363,13 +364,8 @@ def problem_seven(request):
 
     student_id = 12
 
-   # try:
-        #student = Student.objects.get(pk=student_id).delete()
-
-    student_id = 11
-
     try:
-        student = Student.objects.get(pk=student_id)
+        student = Student.objects.get(pk=student_id).delete()
 
     except ObjectDoesNotExist:
         print('Great! It failed and couldnt find the object because we deleted it!')

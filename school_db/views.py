@@ -270,8 +270,8 @@ SELECT COUNT(*) AS `__count`
 def problem_five(request):
 
 
-    new_student = Student.objects.create(id = 12, first_name = 'Colleen', last_name = 'Stewart', year = 1, gpa = 4.0)
-    print(new_student)
+    new_student = Student.objects.create(id = 13, first_name = 'Colleen', last_name = 'Stewart', year = 1, gpa = 4.0)
+    print(f'ID: {new_student.pk} \nFull Name: {new_student.first_name} {new_student.last_name} \nYear: {new_student.year} \nGPA: {new_student.gpa}')
 
 
     return complete(request)
@@ -308,10 +308,10 @@ def problem_six(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
 
-    student_id = 12
+    student_id = 13
     Student.objects.filter(pk=student_id).update(gpa=3.8)
     prob_six_student = Student.objects.get(pk=student_id)
-    print(prob_six_student)
+    print(f'ID: {prob_six_student.pk} \nFull Name: {prob_six_student.first_name} {prob_six_student.last_name} \nYear: {prob_six_student.year} \nGPA: {prob_six_student.gpa}')
 
 
 
@@ -362,7 +362,7 @@ def problem_seven(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
 
-    student_id = 12
+    student_id = 13
 
     try:
         student = Student.objects.get(pk=student_id).delete()
@@ -421,8 +421,8 @@ SELECT `school_db_student`.`id`,
 def bonus_problem(request):
 
 
-    # instructor name, course count = 1
-    #WHERE COUNT course = 1, print Instructor name
+    # Colleen - instructor name, course count = 1
+    # Colleeen - WHERE COUNT course = 1, print Instructor name
 
     bonus_prob = Instructor.objects.annotate(course_count=Count('course'))
 
